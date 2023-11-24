@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import '../../../styling/Grid.css';
 
 interface ApiData {
   userId:number;
@@ -8,37 +10,48 @@ interface ApiData {
   body: string;
 }
 
+const columns: GridColDef[] = [
+  { field: 'id',
+    headerName: 'ID',
+ },
+ { field: 'userId',
+    headerName: 'User ID',
+ },
+ { field: 'title',
+    headerName: 'Title',
+    width:300
+ },
+ { field: 'body',
+    headerName: 'Body',
+    width:1000,
+    
+ }
+];
+
 interface ManageAdminTableProps {
   data: ApiData[];
 }
 
 const ManageAdminTable: React.FC<ManageAdminTableProps> = ({data}) => {
-  
+  const rows = data.map((item) => ({
+    id: item.id,
+    userId: item.userId,
+    title: item.title,
+    body: item.body
+  }));
 
   return (
     <div style={{margin: '16px'}}>
-    <TableContainer component={Paper} >
-      <Table>
-        <TableHead>
-          <TableRow>
-          <TableCell>ID</TableCell>
-          <TableCell>User ID</TableCell>            
-            <TableCell>Title</TableCell>
-            <TableCell>Body</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell>{item.id}</TableCell>
-              <TableCell>{item.userId}</TableCell>              
-              <TableCell>{item.title}</TableCell>
-              <TableCell>{item.body}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <DataGrid
+        columns={columns}
+        rows={rows}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 10 },
+          },
+        }}
+
+      />
     </div>
   );
 };

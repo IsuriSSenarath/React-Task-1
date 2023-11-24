@@ -1,0 +1,12 @@
+.MuiDataGrid-root {
+    background-color: white;
+  }
+
+  .MuiTableCell-root {
+    color: white;
+  }
+
+  .MuiDataGrid-colCell {
+    font-weight: bold;
+  }
+  
