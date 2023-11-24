@@ -8,17 +8,12 @@ interface ApiData {
   body: string;
 }
 
-const ManageAdminTable: React.FC = () => {
-  const [data, setData] = useState<ApiData[]>([]);
+interface ManageAdminTableProps {
+  data: ApiData[];
+}
 
-  useEffect(() => {
-    const apiEndpoint = 'https://jsonplaceholder.typicode.com/posts';
-
-    fetch(apiEndpoint)
-      .then(response => response.json())
-      .then(data => setData(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+const ManageAdminTable: React.FC<ManageAdminTableProps> = ({data}) => {
+  
 
   return (
     <div style={{margin: '16px'}}>
