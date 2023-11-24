@@ -26,19 +26,17 @@ const ManageAdminTable: React.FC = () => {
       <Table>
         <TableHead>
           <TableRow>
-          <TableCell>No</TableCell>
-          <TableCell>User ID</TableCell>
-            <TableCell>ID</TableCell>
+          <TableCell>ID</TableCell>
+          <TableCell>User ID</TableCell>            
             <TableCell>Title</TableCell>
             <TableCell>Body</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item, index) => (
+          {data.map((item) => (
             <TableRow key={item.id}>
-              <TableCell>{index+1}</TableCell>
-              <TableCell>{item.userId}</TableCell>
               <TableCell>{item.id}</TableCell>
+              <TableCell>{item.userId}</TableCell>              
               <TableCell>{item.title}</TableCell>
               <TableCell>{item.body}</TableCell>
             </TableRow>
